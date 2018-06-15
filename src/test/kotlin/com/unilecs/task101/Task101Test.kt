@@ -1,10 +1,10 @@
-package com.unilecs.task_101
+package com.unilecs.task101
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
 
-class Task_101KtTest {
+class Task101Test {
 
     @Test
     fun getArrayMajorityElementTest1() {
