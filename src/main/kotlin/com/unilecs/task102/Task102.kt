@@ -11,8 +11,8 @@ private val memoMap: MutableMap<Int, Int> = mutableMapOf(
 fun getMinOperationsCount(number: Int): Int {
     if (number in memoMap) {
         return memoMap[number]!!
-    } else {  // заполняем карту мемоизации для всех чисел от 0 до заданного
-        var currentNumber = 1
+    } else {  // заполняем карту мемоизации для всех чисел от 4 до заданного
+        var currentNumber = 4
         while (currentNumber <= number) {
             if (!memoMap.containsKey(currentNumber)) {
                 val minOperationsCount = 1 + min(listOf(
