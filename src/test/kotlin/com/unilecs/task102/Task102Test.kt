@@ -1,5 +1,6 @@
 package com.unilecs.task102
 
+import com.unilecs.task102.Task102.getMinOperationsCount
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -27,6 +28,7 @@ class Task102Test {
 
     @Test
     fun bigNumberTest() {
-        println(getMinOperationsCount(1_000_000))
+        assertEquals(19, getMinOperationsCount(1_000_000))
+        assertEquals(21, getMinOperationsCount(9_999_999))
     }
 }
