@@ -24,4 +24,9 @@ class Task102Test {
         assertEquals(1, getMinOperationsCount(2))
         assertEquals(1, getMinOperationsCount(3))
     }
+
+    @Test
+    fun bigNumberTest() {
+        println(getMinOperationsCount(1_000_000))
+    }
 }

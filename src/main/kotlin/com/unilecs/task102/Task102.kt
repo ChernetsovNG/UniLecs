@@ -3,17 +3,27 @@ package com.unilecs.task102
 import java.util.Collections.min
 
 // карта мемоизации вида <число -> наименьшее кол-во операций для приведения его к единице>
-private val memoMap: MutableMap<Int, Int> = mutableMapOf(Pair(1, 0), Pair(2, 1), Pair(3, 1))
+private val memoMap: MutableMap<Int, Int> = mutableMapOf(
+    Pair(1, 0),
+    Pair(2, 1),
+    Pair(3, 1))
 
 fun getMinOperationsCount(number: Int): Int {
-    return if (number in memoMap) {
-        memoMap[number]!!
-    } else {
-        val minOperationsCount = 1 + min(listOf(
-                getMinOperationsCount(number - 1),
-                if (number % 2 == 0) getMinOperationsCount(number / 2) else Int.MAX_VALUE,
-                if (number % 3 == 0) getMinOperationsCount(number / 3) else Int.MAX_VALUE))
-        memoMap[number] = minOperationsCount
-        minOperationsCount
+    if (number in memoMap) {
+        return memoMap[number]!!
+    } else {  // заполняем карту мемоизации для всех чисел от 0 до заданного
+        var currentNumber = 1
+        while (currentNumber <= number) {
+            if (!memoMap.containsKey(currentNumber)) {
+                val minOperationsCount = 1 + min(listOf(
+                    if (currentNumber % 3 == 0) getMinOperationsCount(currentNumber / 3) else Int.MAX_VALUE,
+                    if (currentNumber % 2 == 0) getMinOperationsCount(currentNumber / 2) else Int.MAX_VALUE,
+                    getMinOperationsCount(currentNumber - 1)
+                ))
+                memoMap[currentNumber] = minOperationsCount
+            }
+            currentNumber += 1
+        }
     }
+    return memoMap[number]!!
 }
